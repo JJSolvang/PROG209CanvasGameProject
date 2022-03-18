@@ -6,6 +6,7 @@ canvas.height = 800;
 document.body.appendChild(canvas);
 
 var gameover = false;
+setTimeout(secondPassed, 1000);
 var timer = 30;
 var frames = 0;
 // Load Audio
@@ -92,13 +93,6 @@ var render = function () {
         ctx.drawImage(pokemonImage, pokemon.x, pokemon.y);
     }
 
-    frames++
-    if (frames >= 30)
-    {
-        frames = 0;
-        timer--;
-    }
-
     // Score
     ctx.fillStyle = "rgb(250, 250, 250)";
     ctx.font = "24px Helvetica";
@@ -118,6 +112,11 @@ var render = function () {
     } else {
         ctx.fillText("Time: 0:0" + timer, 32, 64);
     }
+}
+
+function secondPassed () {
+    timer--;
+    setTimeout(secondPassed, 1000);
 }
 
 // Game objects
