@@ -8,6 +8,9 @@ document.body.appendChild(canvas);
 var gameover = false;
 var timer = 30;
 var frames = 0;
+// Load Audio
+var a = document.getElementById("collectSound");
+var c = document.getElementById("crySound");
 
 // Background image
 var bgReady = false;
@@ -312,12 +315,16 @@ var update = function (modifier) {
 
     // Are they touching?
     if (trainer.x <= (pokeball.x + 32) && pokeball.x <= (trainer.x + 32) && trainer.y <= (pokeball.y + 32) && pokeball.y <= (trainer.y + 32)) {
+        a.currentTime = 0.1;
+        a.play();
         ++pokeballsCaught;       // keep track of our “score”
         reset();       // start a new cycle
     }
 
     if (trainer.x <= (pokemon.x + 32) && pokemon.x <= (trainer.x + 32) && trainer.y <= (pokemon.y + 32) && pokemon.y <= (trainer.y + 32)) {
-        gameover = true;       // End game
+        
+        c.currentTime = 0.4;
+        c.play();gameover = true;       // End game
         reset();       // start a new cycle
     }
 };
