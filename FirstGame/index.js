@@ -8,7 +8,6 @@ document.body.appendChild(canvas);
 var gameover = false;
 setTimeout(secondPassed, 1000);
 var timer = 30;
-var frames = 0;
 // Load Audio
 var a = document.getElementById("collectSound");
 var c = document.getElementById("crySound");
@@ -109,8 +108,14 @@ var render = function () {
     ctx.fillStyle = "black";
     if (timer > 9) {
         ctx.fillText("Time: 0:" + timer, 32, 64);
+    } else if (timer == 0) {
+        ctx.fillText("Time: 0:00", 32, 64);
     } else {
         ctx.fillText("Time: 0:0" + timer, 32, 64);
+    }
+
+    if (timer == 0) {
+        timer--;
     }
 }
 
@@ -212,7 +217,7 @@ var main = function () {
         ctx.fillStyle = "black";
         ctx.fillText("Game over! You were eaten!", 400, 300);
     }
-    else if (timer <= 0) {
+    else if (timer < 0) {
         ctx.font = "36px Helvetica";
         ctx.textAlign = "center";
         ctx.textBaseline = "top";
